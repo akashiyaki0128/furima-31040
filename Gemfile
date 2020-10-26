@@ -70,7 +70,7 @@ gem 'pry-rails'
 
 gem 'gimei'
 
-gem 'mini_magick'
 gem 'image_processing'
+gem 'mini_magick'
 
-gem "active_hash"
+gem 'active_hash'
