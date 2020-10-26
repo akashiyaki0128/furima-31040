@@ -16,13 +16,10 @@ class Item < ApplicationRecord
   validates  :postage_player_id, numericality: { other_than: 1 ,message: "must be selected"} 
   validates  :prefecture_id,  numericality: { other_than: 0 ,message: "must be selected"} 
   validates  :handling_time_id, numericality: { other_than: 1,message: "must be selected" } 
-  validates  :price 
-  end
+  validates  :price , numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}
+  end                               
 
   belongs_to :user
   has_one_attached :image
 end
 
-# - 価格の範囲が、¥300~¥9,999,999の間であること
-# - 販売価格は半角数字のみ保存可能であること
-# - 入力された販売価格によって、販売手数料や販売利益の表示が変わること
