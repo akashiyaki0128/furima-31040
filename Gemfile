@@ -69,3 +69,8 @@ gem 'devise'
 gem 'pry-rails'
 
 gem 'gimei'
+
+gem 'image_processing'
+gem 'mini_magick'
+
+gem 'active_hash'
