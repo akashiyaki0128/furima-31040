@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @item = Item.all
@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
