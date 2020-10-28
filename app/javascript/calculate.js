@@ -1,4 +1,5 @@
-const calculate = () => {
+if (document.URL.match( /new/ ) || document.URL.match( /edit/ )){
+  const calculate = () => {
   // 表示変更箇所のIDを取得し、functionを作成、keyupで発火する設定、itemPriceに入力値のvalueを代入
   const sellPrice = document.getElementById("item-price");
   sellPrice.addEventListener("keyup",() => {
@@ -13,6 +14,6 @@ const calculate = () => {
     const profitPrice = document.getElementById("profit")
     profitPrice.innerHTML = `${profit}`
   });
+  };
+  window.addEventListener("load", calculate);
 };
-
-window.addEventListener("load", calculate);
