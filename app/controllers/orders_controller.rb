@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :item_owner
-  
+  before_action :sold_out
   def index
     @order = UserOrder.new
   end
@@ -33,6 +33,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def sold_out
+    if @item.order
+      redirect_to root_path
+    end
+  end
+
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"] #テスト用の秘密鍵
     Payjp::Charge.create(
@@ -41,7 +47,5 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
-  
-end
 
-# - ログイン・ログアウトの状態に関わらず、URLを直接入力して売却済み商品の商品購入ページへ遷移しようとすると、トップページに遷移すること
+end
