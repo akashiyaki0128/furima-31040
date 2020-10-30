@@ -24,9 +24,9 @@ RSpec.describe UserOrder, type: :model do
         expect(@order.errors.full_messages).to include("Postal code can't be blank", 'Postal code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idがないと登録できない' do
-        @order.prefecture_id = nil
+        @order.prefecture_id = '0'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture must be selected')
+        expect(@order.errors.full_messages).to include('Prefecture must be selected')
       end
       it 'cityが空だと登録できない' do
         @order.city = nil
