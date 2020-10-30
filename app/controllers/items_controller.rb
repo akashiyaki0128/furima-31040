@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :ensure_current_user, only: [:edit,:update,:destroy]
 
   def index
-    @items = Item.order("created_at desc")
+    @items = Item.order('created_at desc')
   end
 
   def new
@@ -19,8 +19,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @item.update(item_params)
@@ -31,9 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-   if @item.destroy
-    redirect_to root_path
-   end
+    redirect_to root_path if @item.destroy
   end
 
   def show
@@ -48,9 +45,6 @@ class ItemsController < ApplicationController
 
   def ensure_current_user
     @item = Item.find(params[:id])
-    if current_user.id != @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id != @item.user_id
   end
-  
 end
